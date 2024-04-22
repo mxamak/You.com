@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    nav {
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin: 0 10px;
+    }
+    section {
+      padding: 20px;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+  <title>Recipe Collection</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Our Recipe Collection</h1>
+  </header>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#recipes">Recipes</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <section id="home">
+    <h2>Home</h2>
+    <!-- Add content for the Home section here -->
+  </section>
+  <section id="recipes">
+    <h2>Recipes</h2>
+    <label for="category">Filter by Category:</label>
+    <select id="category">
+      <option value="all">All Categories</option>
+      <option value="appetizer">Appetizers</option>
+      <option value="main">Main Dishes</option>
+      <option value="dessert">Desserts</option>
+    </select>
+    <div id="recipeList">
+      <!-- JavaScript will populate this with recipe items -->
+    </div>
+  </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <!-- Add contact form or information here -->
+  </section>
+  <footer>
+    <p>&copy; 2024 Recipe Collection</p>
+  </footer>
+
+  <script>
+    // JavaScript code for filtering recipes
+    const recipes = [
+      { name: "Caprese Salad", category: "appetizer", description: "A simple Italian salad made of sliced fresh mozzarella, tomatoes, and sweet basil, seasoned with salt and olive oil." },
+      { name: "Spaghetti Bolognese", category: "main", description: "A classic Italian meat sauce made with ground beef, tomatoes, and a variety of flavorful ingredients." },
+      { name: "Chocolate Cake", category: "dessert", description: "A moist and decadent chocolate cake that is sure to satisfy any sweet tooth." }
+      // Add more recipes as needed
+    ];
+
+    const categorySelect = document.getElementById('category');
+    const recipeList = document.getElementById('recipeList');
+
+    categorySelect.addEventListener('change', function () {
+      const selectedCategory = categorySelect.value;
+      const filteredRecipes = selectedCategory === 'all' ? recipes : recipes.filter(recipe => recipe.category === selectedCategory);
+      recipeList.innerHTML = filteredRecipes.map(recipe => `<div><h3>${recipe.name}</h3><p>${recipe.description}</p></div>`).join('');
+    });
+
+    // Initial population of recipe list
+    recipeList.innerHTML = recipes.map(recipe => `<div><h3>${recipe.name}</h3><p>${recipe.description}</p></div>`).join('');
+  </script>
+</body>
+</html>
